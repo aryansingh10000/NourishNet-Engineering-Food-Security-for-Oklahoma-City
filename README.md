@@ -1,0 +1,3 @@
+Many residents in Oklahoma city live in food deserts which are areas with limited access to affordable, nutritious food with Oklahoma being among the states with highest levels of food insecurity. This lack of access impacts low income families, children, and elderly populations contributing to health problems. Despite food banks and assistance programs, many people are still food insecure because of poor location planning and limited resources. My goal is to
+use data analysis and engineering methods to identify areas of food insecurity in Oklahoma City, analyze factors that contribute to this problem and propose optimized solutions such as new food pantry locations, distribution routes, or energy-efficient infrastructure.
+
