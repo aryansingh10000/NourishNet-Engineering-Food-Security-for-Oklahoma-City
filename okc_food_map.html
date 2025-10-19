@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_b3fc516b26a916b3c7d47483df443a9e {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+<div style="position: fixed; bottom: 12px; left: 10px; width: 300px; height: 140px; 
+     border:2px solid grey; z-index:9999; font-size:13px; background:white; padding:8px;">
+<b>Legend — Food insecurity composite (CDC-style)</b><br>
+🔥 HIGH: severe need (top tier)<br>
+⚠️ MEDIUM: moderate need<br>
+✅ LOW: lower priority<br>
+Icons: fire = top 3 tracts, exclamation = top 4–7<br>
+</div>
+    
+            <div class="folium-map" id="map_b3fc516b26a916b3c7d47483df443a9e" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_b3fc516b26a916b3c7d47483df443a9e = L.map(
+                "map_b3fc516b26a916b3c7d47483df443a9e",
+                {
+                    center: [35.48, -97.5],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_8128d98e2b61c57c2bf74e6999a2313c = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_8128d98e2b61c57c2bf74e6999a2313c.addTo(map_b3fc516b26a916b3c7d47483df443a9e);
+        
+    
+            var marker_7238e56331211c02d2c9cda96850f895 = L.marker(
+                [35.48928424432431, -97.47291993752143],
+                {
+}
+            ).addTo(map_b3fc516b26a916b3c7d47483df443a9e);
+        
+    
+            var icon_d311c75569631d02a550854760832274 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6f99f200b8f4071e51a177be7f27ec33 = L.popup({
+  "maxWidth": 360,
+});
+
+        
+            
+                var html_8f41663b08c07d26e601fea64b3a5d85 = $(`<div id="html_8f41663b08c07d26e601fea64b3a5d85" style="width: 100.0%; height: 100.0%;"><div style='max-width:320px;font-family:Arial,Helvetica,sans-serif;'><b>⚠️ MEDIUM FOOD INSECURITY</b> &nbsp; <i>Rank #1</i><br><b>Tract:</b> 40109101300<br><b>Composite score:</b> 0.521<br><br><b>Poverty rate:</b> 52.8%<br><b>SNAP (share):</b> N/A<br><b>% within 1 mile:</b> N/A &nbsp; | &nbsp; <b>% within 10 miles:</b> N/A<br><b>Median income:</b> $27,214<br><br><b>Health:</b> Obesity 54.7% &nbsp; Diabetes 26.0% &nbsp; Inactive 45.8%</div></div>`)[0];
+                popup_6f99f200b8f4071e51a177be7f27ec33.setContent(html_8f41663b08c07d26e601fea64b3a5d85);
+            
+        
+
+        marker_7238e56331211c02d2c9cda96850f895.bindPopup(popup_6f99f200b8f4071e51a177be7f27ec33)
+        ;
+
+        
+    
+    
+            marker_7238e56331211c02d2c9cda96850f895.bindTooltip(
+                `<div>
+                     Rank 1 — Tract 40109101300
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7238e56331211c02d2c9cda96850f895.setIcon(icon_d311c75569631d02a550854760832274);
+            
+    
+            var marker_79611933238008cf248c99cea80b8ff0 = L.marker(
+                [35.49939997778421, -97.48695757777794],
+                {
+}
+            ).addTo(map_b3fc516b26a916b3c7d47483df443a9e);
+        
+    
+            var icon_d153baf4ce34e36bb9741cedb8d83962 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d890ee9c460ee999c29de20f491588c7 = L.popup({
+  "maxWidth": 360,
+});
+
+        
+            
+                var html_0fa4bf982bd1c1e4d1337cbf200ae96a = $(`<div id="html_0fa4bf982bd1c1e4d1337cbf200ae96a" style="width: 100.0%; height: 100.0%;"><div style='max-width:320px;font-family:Arial,Helvetica,sans-serif;'><b>⚠️ MEDIUM FOOD INSECURITY</b> &nbsp; <i>Rank #2</i><br><b>Tract:</b> 40109100400<br><b>Composite score:</b> 0.443<br><br><b>Poverty rate:</b> 40.6%<br><b>SNAP (share):</b> N/A<br><b>% within 1 mile:</b> N/A &nbsp; | &nbsp; <b>% within 10 miles:</b> N/A<br><b>Median income:</b> $35,236<br><br><b>Health:</b> Obesity 53.5% &nbsp; Diabetes 24.9% &nbsp; Inactive 45.3%</div></div>`)[0];
+                popup_d890ee9c460ee999c29de20f491588c7.setContent(html_0fa4bf982bd1c1e4d1337cbf200ae96a);
+            
+        
+
+        marker_79611933238008cf248c99cea80b8ff0.bindPopup(popup_d890ee9c460ee999c29de20f491588c7)
+        ;
+
+        
+    
+    
+            marker_79611933238008cf248c99cea80b8ff0.bindTooltip(
+                `<div>
+                     Rank 2 — Tract 40109100400
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_79611933238008cf248c99cea80b8ff0.setIcon(icon_d153baf4ce34e36bb9741cedb8d83962);
+            
+    
+            var marker_5dfc1ca02ed81959dfc44c4a8d39ade9 = L.marker(
+                [35.43905718039243, -97.52563214753528],
+                {
+}
+            ).addTo(map_b3fc516b26a916b3c7d47483df443a9e);
+        
+    
+            var icon_fc252beb6ff367ee96735f443cd90000 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "fire",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7d1d341272390ed5e414f271f94ffed7 = L.popup({
+  "maxWidth": 360,
+});
+
+        
+            
+                var html_9d21072e60327c92a7b24f4b51ea4b14 = $(`<div id="html_9d21072e60327c92a7b24f4b51ea4b14" style="width: 100.0%; height: 100.0%;"><div style='max-width:320px;font-family:Arial,Helvetica,sans-serif;'><b>⚠️ MEDIUM FOOD INSECURITY</b> &nbsp; <i>Rank #3</i><br><b>Tract:</b> 40109104600<br><b>Composite score:</b> 0.428<br><br><b>Poverty rate:</b> 38.4%<br><b>SNAP (share):</b> N/A<br><b>% within 1 mile:</b> N/A &nbsp; | &nbsp; <b>% within 10 miles:</b> N/A<br><b>Median income:</b> $34,722<br><br><b>Health:</b> Obesity 50.4% &nbsp; Diabetes 21.4% &nbsp; Inactive 49.6%</div></div>`)[0];
+                popup_7d1d341272390ed5e414f271f94ffed7.setContent(html_9d21072e60327c92a7b24f4b51ea4b14);
+            
+        
+
+        marker_5dfc1ca02ed81959dfc44c4a8d39ade9.bindPopup(popup_7d1d341272390ed5e414f271f94ffed7)
+        ;
+
+        
+    
+    
+            marker_5dfc1ca02ed81959dfc44c4a8d39ade9.bindTooltip(
+                `<div>
+                     Rank 3 — Tract 40109104600
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5dfc1ca02ed81959dfc44c4a8d39ade9.setIcon(icon_fc252beb6ff367ee96735f443cd90000);
+            
+    
+            var marker_831c306066f7cd5b2522c50e2b250a39 = L.marker(
+                [35.49678205261468, -97.51650745263967],
+                {
+}
+            ).addTo(map_b3fc516b26a916b3c7d47483df443a9e);
+        
+    
+            var icon_1b45b8445597e5f6713d31ebe4b44b81 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "exclamation-triangle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7367139128412d714f4763391ae1c5c6 = L.popup({
+  "maxWidth": 360,
+});
+
+        
+            
+                var html_becd6feb0e224eb65703c982fc465767 = $(`<div id="html_becd6feb0e224eb65703c982fc465767" style="width: 100.0%; height: 100.0%;"><div style='max-width:320px;font-family:Arial,Helvetica,sans-serif;'><b>⚠️ MEDIUM FOOD INSECURITY</b> &nbsp; <i>Rank #4</i><br><b>Tract:</b> 40109101200<br><b>Composite score:</b> 0.39<br><br><b>Poverty rate:</b> 19.9%<br><b>SNAP (share):</b> N/A<br><b>% within 1 mile:</b> 0.0% &nbsp; | &nbsp; <b>% within 10 miles:</b> 0.0%<br><b>Median income:</b> $94,167<br><br><b>Health:</b> Obesity 37.6% &nbsp; Diabetes 8.4% &nbsp; Inactive 23.3%</div></div>`)[0];
+                popup_7367139128412d714f4763391ae1c5c6.setContent(html_becd6feb0e224eb65703c982fc465767);
+            
+        
+
+        marker_831c306066f7cd5b2522c50e2b250a39.bindPopup(popup_7367139128412d714f4763391ae1c5c6)
+        ;
+
+        
+    
+    
+            marker_831c306066f7cd5b2522c50e2b250a39.bindTooltip(
+                `<div>
+                     Rank 4 — Tract 40109101200
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_831c306066f7cd5b2522c50e2b250a39.setIcon(icon_1b45b8445597e5f6713d31ebe4b44b81);
+            
+    
+            var marker_459a742d58d7323b7f94252575fd8ccd = L.marker(
+                [35.487196360514986, -97.49071887074234],
+                {
+}
+            ).addTo(map_b3fc516b26a916b3c7d47483df443a9e);
+        
+    
+            var icon_e8ac21cc4e884572af1bda4b7bf812e1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "exclamation-triangle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_23bba79166bd4422f3c37ca540ea9f23 = L.popup({
+  "maxWidth": 360,
+});
+
+        
+            
+                var html_9244470748e1ffc76c2cfa9e9be337ee = $(`<div id="html_9244470748e1ffc76c2cfa9e9be337ee" style="width: 100.0%; height: 100.0%;"><div style='max-width:320px;font-family:Arial,Helvetica,sans-serif;'><b>⚠️ MEDIUM FOOD INSECURITY</b> &nbsp; <i>Rank #5</i><br><b>Tract:</b> 40109101400<br><b>Composite score:</b> 0.386<br><br><b>Poverty rate:</b> 33.1%<br><b>SNAP (share):</b> N/A<br><b>% within 1 mile:</b> N/A &nbsp; | &nbsp; <b>% within 10 miles:</b> N/A<br><b>Median income:</b> $28,191<br><br><b>Health:</b> Obesity 51.0% &nbsp; Diabetes 21.6% &nbsp; Inactive 37.0%</div></div>`)[0];
+                popup_23bba79166bd4422f3c37ca540ea9f23.setContent(html_9244470748e1ffc76c2cfa9e9be337ee);
+            
+        
+
+        marker_459a742d58d7323b7f94252575fd8ccd.bindPopup(popup_23bba79166bd4422f3c37ca540ea9f23)
+        ;
+
+        
+    
+    
+            marker_459a742d58d7323b7f94252575fd8ccd.bindTooltip(
+                `<div>
+                     Rank 5 — Tract 40109101400
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_459a742d58d7323b7f94252575fd8ccd.setIcon(icon_e8ac21cc4e884572af1bda4b7bf812e1);
+            
+    
+            var marker_2a1314b88d3cb0a5f2c9dbde0f619668 = L.marker(
+                [35.49666854099979, -97.53825986885667],
+                {
+}
+            ).addTo(map_b3fc516b26a916b3c7d47483df443a9e);
+        
+    
+            var icon_d058fa886104817836ed32cca6705a9e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "exclamation-triangle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_634fea4a517194cd512380e918cc7ea1 = L.popup({
+  "maxWidth": 360,
+});
+
+        
+            
+                var html_2b9d8fab64272873a3bf090f123017ac = $(`<div id="html_2b9d8fab64272873a3bf090f123017ac" style="width: 100.0%; height: 100.0%;"><div style='max-width:320px;font-family:Arial,Helvetica,sans-serif;'><b>⚠️ MEDIUM FOOD INSECURITY</b> &nbsp; <i>Rank #6</i><br><b>Tract:</b> 40109101000<br><b>Composite score:</b> 0.362<br><br><b>Poverty rate:</b> 36.3%<br><b>SNAP (share):</b> N/A<br><b>% within 1 mile:</b> N/A &nbsp; | &nbsp; <b>% within 10 miles:</b> N/A<br><b>Median income:</b> $30,863<br><br><b>Health:</b> Obesity 34.9% &nbsp; Diabetes 9.1% &nbsp; Inactive 27.8%</div></div>`)[0];
+                popup_634fea4a517194cd512380e918cc7ea1.setContent(html_2b9d8fab64272873a3bf090f123017ac);
+            
+        
+
+        marker_2a1314b88d3cb0a5f2c9dbde0f619668.bindPopup(popup_634fea4a517194cd512380e918cc7ea1)
+        ;
+
+        
+    
+    
+            marker_2a1314b88d3cb0a5f2c9dbde0f619668.bindTooltip(
+                `<div>
+                     Rank 6 — Tract 40109101000
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2a1314b88d3cb0a5f2c9dbde0f619668.setIcon(icon_d058fa886104817836ed32cca6705a9e);
+            
+    
+            var marker_8983a67bcbaa7ca749683f1954e2bbec = L.marker(
+                [35.45820620618141, -97.37126165978599],
+                {
+}
+            ).addTo(map_b3fc516b26a916b3c7d47483df443a9e);
+        
+    
+            var icon_8abdb583d6a852a683a43794ad8d1a0e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "exclamation-triangle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cc6609f5e1e8562636848c1cdcb07cc6 = L.popup({
+  "maxWidth": 360,
+});
+
+        
+            
+                var html_7e2f403219a9d2dd2cd23a313e7fadd3 = $(`<div id="html_7e2f403219a9d2dd2cd23a313e7fadd3" style="width: 100.0%; height: 100.0%;"><div style='max-width:320px;font-family:Arial,Helvetica,sans-serif;'><b>⚠️ MEDIUM FOOD INSECURITY</b> &nbsp; <i>Rank #7</i><br><b>Tract:</b> 40109107703<br><b>Composite score:</b> 0.343<br><br><b>Poverty rate:</b> 15.4%<br><b>SNAP (share):</b> N/A<br><b>% within 1 mile:</b> 17.1% &nbsp; | &nbsp; <b>% within 10 miles:</b> N/A<br><b>Median income:</b> $72,109<br><br><b>Health:</b> Obesity 35.8% &nbsp; Diabetes 12.2% &nbsp; Inactive 22.6%</div></div>`)[0];
+                popup_cc6609f5e1e8562636848c1cdcb07cc6.setContent(html_7e2f403219a9d2dd2cd23a313e7fadd3);
+            
+        
+
+        marker_8983a67bcbaa7ca749683f1954e2bbec.bindPopup(popup_cc6609f5e1e8562636848c1cdcb07cc6)
+        ;
+
+        
+    
+    
+            marker_8983a67bcbaa7ca749683f1954e2bbec.bindTooltip(
+                `<div>
+                     Rank 7 — Tract 40109107703
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8983a67bcbaa7ca749683f1954e2bbec.setIcon(icon_8abdb583d6a852a683a43794ad8d1a0e);
+            
+    
+            var marker_a0a661f8b91e7f24911071e328b157b2 = L.marker(
+                [35.48243563577381, -97.44357211257964],
+                {
+}
+            ).addTo(map_b3fc516b26a916b3c7d47483df443a9e);
+        
+    
+            var icon_ee34a01254d45807401a53e19a2e460e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-circle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6493c9056d11119c698d1e039c2fed72 = L.popup({
+  "maxWidth": 360,
+});
+
+        
+            
+                var html_3e5aca34a43a471bbf011e6f687dc063 = $(`<div id="html_3e5aca34a43a471bbf011e6f687dc063" style="width: 100.0%; height: 100.0%;"><div style='max-width:320px;font-family:Arial,Helvetica,sans-serif;'><b>✅ LOW FOOD INSECURITY</b> &nbsp; <i>Rank #8</i><br><b>Tract:</b> 40109107900<br><b>Composite score:</b> 0.302<br><br><b>Poverty rate:</b> 32.5%<br><b>SNAP (share):</b> N/A<br><b>% within 1 mile:</b> 100.0% &nbsp; | &nbsp; <b>% within 10 miles:</b> 91.0%<br><b>Median income:</b> $60,500<br><br><b>Health:</b> Obesity 52.1% &nbsp; Diabetes 23.3% &nbsp; Inactive 41.8%</div></div>`)[0];
+                popup_6493c9056d11119c698d1e039c2fed72.setContent(html_3e5aca34a43a471bbf011e6f687dc063);
+            
+        
+
+        marker_a0a661f8b91e7f24911071e328b157b2.bindPopup(popup_6493c9056d11119c698d1e039c2fed72)
+        ;
+
+        
+    
+    
+            marker_a0a661f8b91e7f24911071e328b157b2.bindTooltip(
+                `<div>
+                     Rank 8 — Tract 40109107900
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a0a661f8b91e7f24911071e328b157b2.setIcon(icon_ee34a01254d45807401a53e19a2e460e);
+            
+    
+            var marker_75d96df80cd3d1475e4704ae65621c7e = L.marker(
+                [35.42464156668089, -97.54129024443033],
+                {
+}
+            ).addTo(map_b3fc516b26a916b3c7d47483df443a9e);
+        
+    
+            var icon_217f94a71ab81c659367acb109a2c561 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-circle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5c99f4bfbae7cf32fa9f51b9ed9f2f0f = L.popup({
+  "maxWidth": 360,
+});
+
+        
+            
+                var html_0cb61b277eb91fa986d85ba7f34770a4 = $(`<div id="html_0cb61b277eb91fa986d85ba7f34770a4" style="width: 100.0%; height: 100.0%;"><div style='max-width:320px;font-family:Arial,Helvetica,sans-serif;'><b>✅ LOW FOOD INSECURITY</b> &nbsp; <i>Rank #9</i><br><b>Tract:</b> 40109107218<br><b>Composite score:</b> 0.277<br><br><b>Poverty rate:</b> 17.0%<br><b>SNAP (share):</b> N/A<br><b>% within 1 mile:</b> N/A &nbsp; | &nbsp; <b>% within 10 miles:</b> N/A<br><b>Median income:</b> $49,894<br><br><b>Health:</b> Obesity 44.9% &nbsp; Diabetes 17.4% &nbsp; Inactive 41.7%</div></div>`)[0];
+                popup_5c99f4bfbae7cf32fa9f51b9ed9f2f0f.setContent(html_0cb61b277eb91fa986d85ba7f34770a4);
+            
+        
+
+        marker_75d96df80cd3d1475e4704ae65621c7e.bindPopup(popup_5c99f4bfbae7cf32fa9f51b9ed9f2f0f)
+        ;
+
+        
+    
+    
+            marker_75d96df80cd3d1475e4704ae65621c7e.bindTooltip(
+                `<div>
+                     Rank 9 — Tract 40109107218
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_75d96df80cd3d1475e4704ae65621c7e.setIcon(icon_217f94a71ab81c659367acb109a2c561);
+            
+    
+            var marker_2ced5b804bd95b4706d5054a4a9580d1 = L.marker(
+                [35.44564248487459, -97.48889963260126],
+                {
+}
+            ).addTo(map_b3fc516b26a916b3c7d47483df443a9e);
+        
+    
+            var icon_9a796c9c175ccdadca94998b65a2eb51 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-circle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_06aec5e22ccf180dd7f9f4ead9c3bbec = L.popup({
+  "maxWidth": 360,
+});
+
+        
+            
+                var html_5442bc2c8ada99b8c4505416746eb694 = $(`<div id="html_5442bc2c8ada99b8c4505416746eb694" style="width: 100.0%; height: 100.0%;"><div style='max-width:320px;font-family:Arial,Helvetica,sans-serif;'><b>✅ LOW FOOD INSECURITY</b> &nbsp; <i>Rank #10</i><br><b>Tract:</b> 40109105300<br><b>Composite score:</b> 0.275<br><br><b>Poverty rate:</b> 26.3%<br><b>SNAP (share):</b> N/A<br><b>% within 1 mile:</b> 100.0% &nbsp; | &nbsp; <b>% within 10 miles:</b> 66.5%<br><b>Median income:</b> $34,583<br><br><b>Health:</b> Obesity 47.3% &nbsp; Diabetes 17.8% &nbsp; Inactive 44.2%</div></div>`)[0];
+                popup_06aec5e22ccf180dd7f9f4ead9c3bbec.setContent(html_5442bc2c8ada99b8c4505416746eb694);
+            
+        
+
+        marker_2ced5b804bd95b4706d5054a4a9580d1.bindPopup(popup_06aec5e22ccf180dd7f9f4ead9c3bbec)
+        ;
+
+        
+    
+    
+            marker_2ced5b804bd95b4706d5054a4a9580d1.bindTooltip(
+                `<div>
+                     Rank 10 — Tract 40109105300
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2ced5b804bd95b4706d5054a4a9580d1.setIcon(icon_9a796c9c175ccdadca94998b65a2eb51);
+            
+    
+            var marker_7ad4af48df69a96baa6797409b143b8b = L.marker(
+                [35.5037673893399, -97.53972467185518],
+                {
+}
+            ).addTo(map_b3fc516b26a916b3c7d47483df443a9e);
+        
+    
+            var icon_c378b3ae1d12c9afbd577d295788f6a1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-circle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_aae3473af21bed7d82ea9de9139911fe = L.popup({
+  "maxWidth": 360,
+});
+
+        
+            
+                var html_4dd32ed5aeacde8dff5fa5c156bc256b = $(`<div id="html_4dd32ed5aeacde8dff5fa5c156bc256b" style="width: 100.0%; height: 100.0%;"><div style='max-width:320px;font-family:Arial,Helvetica,sans-serif;'><b>✅ LOW FOOD INSECURITY</b> &nbsp; <i>Rank #11</i><br><b>Tract:</b> 40109100800<br><b>Composite score:</b> 0.249<br><br><b>Poverty rate:</b> 17.1%<br><b>SNAP (share):</b> N/A<br><b>% within 1 mile:</b> N/A &nbsp; | &nbsp; <b>% within 10 miles:</b> N/A<br><b>Median income:</b> $54,018<br><br><b>Health:</b> Obesity 38.9% &nbsp; Diabetes 12.3% &nbsp; Inactive 28.2%</div></div>`)[0];
+                popup_aae3473af21bed7d82ea9de9139911fe.setContent(html_4dd32ed5aeacde8dff5fa5c156bc256b);
+            
+        
+
+        marker_7ad4af48df69a96baa6797409b143b8b.bindPopup(popup_aae3473af21bed7d82ea9de9139911fe)
+        ;
+
+        
+    
+    
+            marker_7ad4af48df69a96baa6797409b143b8b.bindTooltip(
+                `<div>
+                     Rank 11 — Tract 40109100800
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7ad4af48df69a96baa6797409b143b8b.setIcon(icon_c378b3ae1d12c9afbd577d295788f6a1);
+            
+    
+            var marker_774be78b2e0f5efdf9337cea0ae60836 = L.marker(
+                [35.45799582351321, -97.58107216667005],
+                {
+}
+            ).addTo(map_b3fc516b26a916b3c7d47483df443a9e);
+        
+    
+            var icon_9dc8b594e049b8cf0c140d9deb576f08 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-circle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6a8fd30e9a223ae625450517d9728d54 = L.popup({
+  "maxWidth": 360,
+});
+
+        
+            
+                var html_24d0b8a0bcf32a3701c86f8698a982e8 = $(`<div id="html_24d0b8a0bcf32a3701c86f8698a982e8" style="width: 100.0%; height: 100.0%;"><div style='max-width:320px;font-family:Arial,Helvetica,sans-serif;'><b>✅ LOW FOOD INSECURITY</b> &nbsp; <i>Rank #12</i><br><b>Tract:</b> 40109107002<br><b>Composite score:</b> 0.225<br><br><b>Poverty rate:</b> 20.1%<br><b>SNAP (share):</b> N/A<br><b>% within 1 mile:</b> 100.0% &nbsp; | &nbsp; <b>% within 10 miles:</b> 90.0%<br><b>Median income:</b> $48,839<br><br><b>Health:</b> Obesity 42.9% &nbsp; Diabetes 13.2% &nbsp; Inactive 34.8%</div></div>`)[0];
+                popup_6a8fd30e9a223ae625450517d9728d54.setContent(html_24d0b8a0bcf32a3701c86f8698a982e8);
+            
+        
+
+        marker_774be78b2e0f5efdf9337cea0ae60836.bindPopup(popup_6a8fd30e9a223ae625450517d9728d54)
+        ;
+
+        
+    
+    
+            marker_774be78b2e0f5efdf9337cea0ae60836.bindTooltip(
+                `<div>
+                     Rank 12 — Tract 40109107002
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_774be78b2e0f5efdf9337cea0ae60836.setIcon(icon_9dc8b594e049b8cf0c140d9deb576f08);
+            
+    
+            var marker_097f7a579f6ada1d9557667380033bde = L.marker(
+                [35.48703651727812, -97.5033844022967],
+                {
+}
+            ).addTo(map_b3fc516b26a916b3c7d47483df443a9e);
+        
+    
+            var icon_9b34c5a6390b49057d15a362ae9f0105 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-circle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_641898a408b7c39d6f98d27aa05c59cf = L.popup({
+  "maxWidth": 360,
+});
+
+        
+            
+                var html_79b3fafbac4a69a42233c7a13393c306 = $(`<div id="html_79b3fafbac4a69a42233c7a13393c306" style="width: 100.0%; height: 100.0%;"><div style='max-width:320px;font-family:Arial,Helvetica,sans-serif;'><b>✅ LOW FOOD INSECURITY</b> &nbsp; <i>Rank #13</i><br><b>Tract:</b> 40109101500<br><b>Composite score:</b> 0.196<br><br><b>Poverty rate:</b> 18.3%<br><b>SNAP (share):</b> N/A<br><b>% within 1 mile:</b> 100.0% &nbsp; | &nbsp; <b>% within 10 miles:</b> 63.1%<br><b>Median income:</b> $86,607<br><br><b>Health:</b> Obesity 42.1% &nbsp; Diabetes 13.7% &nbsp; Inactive 25.7%</div></div>`)[0];
+                popup_641898a408b7c39d6f98d27aa05c59cf.setContent(html_79b3fafbac4a69a42233c7a13393c306);
+            
+        
+
+        marker_097f7a579f6ada1d9557667380033bde.bindPopup(popup_641898a408b7c39d6f98d27aa05c59cf)
+        ;
+
+        
+    
+    
+            marker_097f7a579f6ada1d9557667380033bde.bindTooltip(
+                `<div>
+                     Rank 13 — Tract 40109101500
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_097f7a579f6ada1d9557667380033bde.setIcon(icon_9b34c5a6390b49057d15a362ae9f0105);
+            
+    
+            var marker_1b9df4880dfef6cdbb9cd297376f985f = L.marker(
+                [35.48958892308576, -97.52578234617928],
+                {
+}
+            ).addTo(map_b3fc516b26a916b3c7d47483df443a9e);
+        
+    
+            var icon_4b529ed49bab7d811431e8d4403525c6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-circle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_dbb1e2d08b3d9c230ddb7a2484ffaf94 = L.popup({
+  "maxWidth": 360,
+});
+
+        
+            
+                var html_a3a893a0202c0c49bb91b2547896be87 = $(`<div id="html_a3a893a0202c0c49bb91b2547896be87" style="width: 100.0%; height: 100.0%;"><div style='max-width:320px;font-family:Arial,Helvetica,sans-serif;'><b>✅ LOW FOOD INSECURITY</b> &nbsp; <i>Rank #14</i><br><b>Tract:</b> 40109101800<br><b>Composite score:</b> 0.193<br><br><b>Poverty rate:</b> 4.9%<br><b>SNAP (share):</b> N/A<br><b>% within 1 mile:</b> N/A &nbsp; | &nbsp; <b>% within 10 miles:</b> N/A<br><b>Median income:</b> $110,450<br><br><b>Health:</b> Obesity 32.8% &nbsp; Diabetes 66.5% &nbsp; Inactive 14.8%</div></div>`)[0];
+                popup_dbb1e2d08b3d9c230ddb7a2484ffaf94.setContent(html_a3a893a0202c0c49bb91b2547896be87);
+            
+        
+
+        marker_1b9df4880dfef6cdbb9cd297376f985f.bindPopup(popup_dbb1e2d08b3d9c230ddb7a2484ffaf94)
+        ;
+
+        
+    
+    
+            marker_1b9df4880dfef6cdbb9cd297376f985f.bindTooltip(
+                `<div>
+                     Rank 14 — Tract 40109101800
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1b9df4880dfef6cdbb9cd297376f985f.setIcon(icon_4b529ed49bab7d811431e8d4403525c6);
+            
+    
+            var marker_8aa13bd44e1699017bdea08ff15d2024 = L.marker(
+                [35.49496381055617, -97.56954218943793],
+                {
+}
+            ).addTo(map_b3fc516b26a916b3c7d47483df443a9e);
+        
+    
+            var icon_7435a15bcd2e063810a803ec090fa9f9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-circle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_22c7d937dc184f89c095dee0278dab67 = L.popup({
+  "maxWidth": 360,
+});
+
+        
+            
+                var html_d644b4f87e31433a1949c92a38123577 = $(`<div id="html_d644b4f87e31433a1949c92a38123577" style="width: 100.0%; height: 100.0%;"><div style='max-width:320px;font-family:Arial,Helvetica,sans-serif;'><b>✅ LOW FOOD INSECURITY</b> &nbsp; <i>Rank #15</i><br><b>Tract:</b> 40109100900<br><b>Composite score:</b> 0.193<br><br><b>Poverty rate:</b> 13.8%<br><b>SNAP (share):</b> N/A<br><b>% within 1 mile:</b> N/A &nbsp; | &nbsp; <b>% within 10 miles:</b> N/A<br><b>Median income:</b> $96,771<br><br><b>Health:</b> Obesity 35.1% &nbsp; Diabetes 8.8% &nbsp; Inactive 18.2%</div></div>`)[0];
+                popup_22c7d937dc184f89c095dee0278dab67.setContent(html_d644b4f87e31433a1949c92a38123577);
+            
+        
+
+        marker_8aa13bd44e1699017bdea08ff15d2024.bindPopup(popup_22c7d937dc184f89c095dee0278dab67)
+        ;
+
+        
+    
+    
+            marker_8aa13bd44e1699017bdea08ff15d2024.bindTooltip(
+                `<div>
+                     Rank 15 — Tract 40109100900
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8aa13bd44e1699017bdea08ff15d2024.setIcon(icon_7435a15bcd2e063810a803ec090fa9f9);
+            
+    
+            var marker_b2958d986e5a50b52b9f9e8464c66f55 = L.marker(
+                [35.47298871869263, -97.4383308153867],
+                {
+}
+            ).addTo(map_b3fc516b26a916b3c7d47483df443a9e);
+        
+    
+            var icon_8e3ff83e833ae0764e8fd1556d6515f6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-circle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2828199f2ad737d67eac4be4d8f8b597 = L.popup({
+  "maxWidth": 360,
+});
+
+        
+            
+                var html_e2aa58a378bdb669d57adeea94d29a52 = $(`<div id="html_e2aa58a378bdb669d57adeea94d29a52" style="width: 100.0%; height: 100.0%;"><div style='max-width:320px;font-family:Arial,Helvetica,sans-serif;'><b>✅ LOW FOOD INSECURITY</b> &nbsp; <i>Rank #16</i><br><b>Tract:</b> 40109107806<br><b>Composite score:</b> 0.183<br><br><b>Poverty rate:</b> 11.9%<br><b>SNAP (share):</b> N/A<br><b>% within 1 mile:</b> 100.0% &nbsp; | &nbsp; <b>% within 10 miles:</b> 20.8%<br><b>Median income:</b> $57,536<br><br><b>Health:</b> Obesity 42.6% &nbsp; Diabetes 16.2% &nbsp; Inactive 31.6%</div></div>`)[0];
+                popup_2828199f2ad737d67eac4be4d8f8b597.setContent(html_e2aa58a378bdb669d57adeea94d29a52);
+            
+        
+
+        marker_b2958d986e5a50b52b9f9e8464c66f55.bindPopup(popup_2828199f2ad737d67eac4be4d8f8b597)
+        ;
+
+        
+    
+    
+            marker_b2958d986e5a50b52b9f9e8464c66f55.bindTooltip(
+                `<div>
+                     Rank 16 — Tract 40109107806
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b2958d986e5a50b52b9f9e8464c66f55.setIcon(icon_8e3ff83e833ae0764e8fd1556d6515f6);
+            
+    
+            var marker_c17d6a2ddd707e006714d531d6f446b9 = L.marker(
+                [35.51560402592429, -97.3980056084789],
+                {
+}
+            ).addTo(map_b3fc516b26a916b3c7d47483df443a9e);
+        
+    
+            var icon_c0ca3af94fca378472dc93d07976674e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-circle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_45cc20c2edb09ed6233e26f99fa7f975 = L.popup({
+  "maxWidth": 360,
+});
+
+        
+            
+                var html_da6134c3d2d91054729558bf54494104 = $(`<div id="html_da6134c3d2d91054729558bf54494104" style="width: 100.0%; height: 100.0%;"><div style='max-width:320px;font-family:Arial,Helvetica,sans-serif;'><b>✅ LOW FOOD INSECURITY</b> &nbsp; <i>Rank #17</i><br><b>Tract:</b> 40109108005<br><b>Composite score:</b> 0.18<br><br><b>Poverty rate:</b> 12.4%<br><b>SNAP (share):</b> N/A<br><b>% within 1 mile:</b> 100.0% &nbsp; | &nbsp; <b>% within 10 miles:</b> 100.0%<br><b>Median income:</b> $53,287<br><br><b>Health:</b> Obesity 41.4% &nbsp; Diabetes 15.7% &nbsp; Inactive 25.2%</div></div>`)[0];
+                popup_45cc20c2edb09ed6233e26f99fa7f975.setContent(html_da6134c3d2d91054729558bf54494104);
+            
+        
+
+        marker_c17d6a2ddd707e006714d531d6f446b9.bindPopup(popup_45cc20c2edb09ed6233e26f99fa7f975)
+        ;
+
+        
+    
+    
+            marker_c17d6a2ddd707e006714d531d6f446b9.bindTooltip(
+                `<div>
+                     Rank 17 — Tract 40109108005
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c17d6a2ddd707e006714d531d6f446b9.setIcon(icon_c0ca3af94fca378472dc93d07976674e);
+            
+    
+            map_b3fc516b26a916b3c7d47483df443a9e.fitBounds(
+                [[35.48928424432431, -97.47291993752143], [35.49939997778421, -97.48695757777794], [35.43905718039243, -97.52563214753528], [35.49678205261468, -97.51650745263967], [35.487196360514986, -97.49071887074234], [35.49666854099979, -97.53825986885667], [35.45820620618141, -97.37126165978599], [35.48243563577381, -97.44357211257964], [35.42464156668089, -97.54129024443033], [35.44564248487459, -97.48889963260126], [35.5037673893399, -97.53972467185518], [35.45799582351321, -97.58107216667005], [35.48703651727812, -97.5033844022967], [35.48958892308576, -97.52578234617928], [35.49496381055617, -97.56954218943793], [35.47298871869263, -97.4383308153867], [35.51560402592429, -97.3980056084789]],
+                {"padding": [20, 20]}
+            );
+        
+</script>
+</html>
